@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>金融勇者学院</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">¥</span>
+        <div>
+          <h1>金融勇者学院</h1>
+          <p>打败概念迷雾，通关金融学</p>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-head">
+          <span>通关进度</span>
+          <strong id="progressText">0%</strong>
+        </div>
+        <div class="progress-bar"><span id="progressBar"></span></div>
+      </div>
+      <nav id="lessonNav" class="lesson-nav"></nav>
+    </aside>
+
+    <main class="app">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">同行伙伴：<span id="teacherName">小精灵灵光</span></p>
+          <h2 id="courseTitle">金融冒险：从零通关入门村</h2>
+          <p id="courseSubtitle">每一课是一关，每个概念都是可以击破的守关难题</p>
+          <div class="hero-badges">
+            <span>30 个关卡</span>
+            <span>四档挑战</span>
+            <span>案例试炼</span>
+            <span>即时图解</span>
+            <span>小精灵陪伴</span>
+          </div>
+        </div>
+        <div class="hero-scene hero-image-card" aria-hidden="true">
+          <img src="/assets/hero_finance_adventure.jpg" alt="" />
+          <div class="hero-image-label">
+            <strong>入门村地图</strong>
+            <span>从概念迷雾走向判断力</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button id="markDoneBtn" class="primary">通关本关</button>
+          <button id="resetBtn" class="ghost">重置冒险</button>
+        </div>
+      </section>
+
+      <section class="game-status">
+        <div>
+          <span class="eyebrow">勇者等级</span>
+          <strong id="playerLevel">Lv.1 概念新手</strong>
+        </div>
+        <div class="xp-wrap">
+          <div class="progress-head">
+            <span id="xpText">0 XP</span>
+            <span id="stageRank">入门村</span>
+          </div>
+          <div class="xp-bar"><span id="xpBar"></span></div>
+        </div>
+        <div>
+          <span class="eyebrow">当前守关难题</span>
+          <strong id="activeQuest">概念迷雾</strong>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <article class="lesson-panel">
+          <div class="lesson-title">
+            <div>
+              <p id="lessonMeta" class="eyebrow"></p>
+              <h3 id="lessonTitle"></h3>
+            </div>
+            <span id="lessonStatus" class="status">未完成</span>
+          </div>
+
+          <section class="fairy-hub" aria-label="小精灵灵光随行面板">
+            <div class="fairy-hub-head">
+              <div class="fairy-profile compact">
+                <img src="/assets/fairy_lingguang.jpg" alt="小精灵灵光" />
+                <div>
+                  <p class="eyebrow">小精灵伙伴</p>
+                  <h4>灵光随行中</h4>
+                  <p>她会把关卡提示、学习方法和实时答疑放在一起，陪你稳稳通关。</p>
+                </div>
+              </div>
+              <span id="teacherStatus" class="pill">检测中</span>
+            </div>
+
+            <div class="fairy-hub-grid">
+              <div class="fairy-guidance">
+                <div class="guidance-block">
+                  <div class="companion-head">
+                    <strong>灵光提示</strong>
+                    <button id="coachTeacherBtn" class="ghost">给我战术建议</button>
+                  </div>
+                  <p id="teacherTalk"></p>
+                  <p id="companionTip" class="merged-tip"></p>
+                </div>
+              </div>
+
+              <div class="fairy-chat-panel">
+                <textarea id="teacherQuestion" placeholder="问灵光：这个守关难题能不能再举个例子？"></textarea>
+                <div class="button-row">
+                  <button id="askTeacherBtn" class="primary">提问</button>
+                  <button id="makeQuizBtn" class="secondary">生成挑战</button>
+                </div>
+                <div id="teacherAnswer" class="teacher-answer">小精灵会结合当前关卡回答你的问题，并提醒你怎么更轻松地通关。</div>
+                <details class="teacher-config">
+                  <summary>DeepSeek 配置</summary>
+                  <label>DeepSeek API key <input id="apiKeyInput" type="password" placeholder="粘贴 key 后保存到本地" /></label>
+                  <label>模型 <input id="modelInput" type="text" value="deepseek-v4-flash" /></label>
+                  <button id="saveApiKeyBtn" class="ghost">保存配置</button>
+                </details>
+              </div>
+            </div>
+          </section>
+
+          <div class="visual-card">
+            <div class="companion-head">
+              <strong>本关图解</strong>
+              <button id="generateVisualBtn" class="ghost">生成本关插画</button>
+            </div>
+            <div id="conceptVisual" class="concept-visual"></div>
+            <div id="generatedVisual" class="generated-visual"></div>
+          </div>
+
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="definition">定义卷轴</button>
+            <button class="tab" data-tab="relations">关系地图</button>
+            <button class="tab" data-tab="model">模型工坊</button>
+            <button class="tab" data-tab="example">案例补给</button>
+            <button class="tab" data-tab="boundary">边界陷阱</button>
+            <button class="tab" data-tab="exercise">挑战题</button>
+          </div>
+
+          <div id="tabContent" class="tab-content"></div>
+        </article>
+
+        <aside class="tools">
+          <section class="visual-config-panel">
+            <div class="section-head">
+              <h3>图解生成</h3>
+              <span id="visualStatus" class="pill">检测中</span>
+            </div>
+            <p class="tool-note">需要更直观的解释时，小精灵会调用 nano banana 生成本关插画。</p>
+            <label>nano banana API key <input id="visualApiKeyInput" type="password" placeholder="已配置时可留空" /></label>
+            <label>图片模型 <input id="visualModelInput" type="text" value="Nano_Banana_Pro_2K_0" /></label>
+            <label>比例 <input id="visualAspectInput" type="text" value="16:9" /></label>
+            <button id="saveVisualKeyBtn" class="ghost">保存图解配置</button>
+          </section>
+
+          <section>
+            <h3>冒险路线</h3>
+            <ul id="roadmap"></ul>
+          </section>
+
+          <section>
+            <h3>复利炼金炉</h3>
+            <label>现值 PV <input id="pv" type="number" value="1000" /></label>
+            <label>年利率 r <input id="rate" type="number" value="5" /></label>
+            <label>年数 n <input id="years" type="number" value="3" /></label>
+            <button id="calcBtn" class="secondary">启动炼金</button>
+            <p id="calcResult" class="result">终值：1157.63</p>
+          </section>
+
+          <section>
+            <h3>冒险手札</h3>
+            <textarea id="noteBox" placeholder="记录你的理解、疑问，或者一个能击破概念怪的例子。"></textarea>
+            <button id="saveNoteBtn" class="secondary">收录线索</button>
+          </section>
+
+          <section>
+            <h3>术语图鉴</h3>
+            <div id="flashcard" class="flashcard"></div>
+            <button id="nextCardBtn" class="secondary">翻开下一页</button>
+          </section>
+
+          <section>
+            <h3>远征资料</h3>
+            <div id="sources" class="sources"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

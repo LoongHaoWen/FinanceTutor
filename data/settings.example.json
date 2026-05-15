@@ -1,0 +1,7 @@
+{
+  "deepseek_api_key": "把你的 DeepSeek API key 放在这里，或使用环境变量 DEEPSEEK_API_KEY",
+  "deepseek_model": "deepseek-v4-flash",
+  "nano_banana_api_key": "把你的 nano banana API key 放在这里，或使用环境变量 NANO_BANANA_API_KEY",
+  "nano_banana_model": "Nano_Banana_Pro_2K_0",
+  "nano_banana_aspect_ratio": "16:9"
+}
