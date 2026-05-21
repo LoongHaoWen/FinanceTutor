@@ -848,7 +848,7 @@
       "example": "如果 10 年期利率高于 1 年期利率，投资者可能要求更长期限补偿；如果短长利率倒挂，市场可能担心未来增长放缓。",
       "boundary": "收益率曲线不是经济预测水晶球。央行操作、监管需求、避险资金和供需变化都会影响曲线形态。",
       "reflection": "找一张收益率曲线图，试着描述它是向上、平坦还是倒挂。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/interest-rates.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -928,7 +928,7 @@
       "example": "存款年利率 3%，通胀 4%，账面金额增加，但购买力可能下降。",
       "boundary": "通胀是总体指标，个人消费篮子不同，体感通胀可能不同。税费也会进一步影响实际收益。",
       "reflection": "用一个你熟悉的商品，想想过去几年价格变化如何影响购买力。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/inflation-real-return.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1008,7 +1008,7 @@
       "example": "若下一年股利为 2 元，要求收益率 10%，长期增长 4%，估值约为 2/(0.10-0.04)=33.33 元。",
       "boundary": "模型对 r 和 g 极其敏感，只适合现金流较稳定的公司。高速成长、亏损或不分红企业需要其他方法。",
       "reflection": "改变 r 或 g 1 个百分点，观察估值变化。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/valuation-ddm.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1088,7 +1088,7 @@
       "example": "一家企业未来五年现金流逐步增长，之后进入稳定期。DCF 会分别估算五年现金流和稳定期终值。",
       "boundary": "DCF 看似精确，实际高度依赖预测。增长率、利润率、资本开支和折现率的小变化都可能改变结论。",
       "reflection": "列出一个 DCF 模型最容易出错的三个假设。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/dcf.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1168,7 +1168,7 @@
       "example": "企业若债务便宜但过度举债，会增加违约风险，股权资本成本也可能上升。",
       "boundary": "WACC 适合与企业整体风险相近的项目。高风险新业务不能机械使用公司平均 WACC。",
       "reflection": "为什么“便宜债务”不代表企业应该无限借钱？",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/cost-of-capital.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1248,7 +1248,7 @@
       "example": "同样赚 100 万，低负债企业压力较小；高负债企业若利润下滑，可能很快面临违约风险。",
       "boundary": "杠杆不是坏东西。稳定现金流行业可承受较高债务，周期性行业通常需要更厚安全边际。",
       "reflection": "找一个家庭买房贷款的例子，解释杠杆如何放大压力。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/leverage.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1328,7 +1328,7 @@
       "example": "成熟公用事业企业现金流稳定，可能使用较多债务；早期科技企业现金流不稳定，通常更依赖股权融资。",
       "boundary": "没有适合所有公司的最佳负债率。行业、资产性质、盈利稳定性和融资环境都会改变选择。",
       "reflection": "为什么创业公司通常不适合背太多固定债务？",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/capital-structure.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1408,7 +1408,7 @@
       "example": "一家店销售增长很快，但货款回收慢、库存增加快，可能越卖越缺现金。",
       "boundary": "压低库存可以释放现金，但可能影响交付；延长应付账款能缓解压力，也可能损害供应商关系。",
       "reflection": "用一家小店举例说明“赚钱但缺现金”的原因。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/working-capital.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1488,7 +1488,7 @@
       "example": "银行审批房贷时会看收入稳定性、负债水平、首付比例、抵押物价值和信用记录。",
       "boundary": "模型评分不能完全替代判断。经济周期、房价变化和借款人突发事件都会改变信用风险。",
       "reflection": "列出影响个人信用风险的三个因素。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/banking-credit.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1568,7 +1568,7 @@
       "example": "沪深 300 ETF 或标普 500 ETF 能让投资者用一笔交易持有一篮子股票。",
       "boundary": "被动投资不等于无风险。指数下跌时 ETF 也会下跌，行业主题 ETF 可能并不充分分散。",
       "reflection": "比较主动基金和指数基金各一个优缺点。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/funds-etf.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1648,7 +1648,7 @@
       "example": "看到朋友赚钱后立刻追入热门资产，可能不是基于分析，而是害怕错过的情绪在驱动。",
       "boundary": "知道偏差不代表能完全摆脱偏差。流程、记录和预设规则比临场意志更可靠。",
       "reflection": "回想一次冲动消费或投资，识别其中一个心理偏差。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/behavioral-finance.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1728,7 +1728,7 @@
       "example": "一家公司的利好公告公布后，股价可能迅速调整，普通投资者很难在公告之后还低价买入。",
       "boundary": "市场可能阶段性失灵，尤其在流动性差、信息不透明或情绪极端时。但发现错误和从错误中获利是两回事。",
       "reflection": "为什么“大家都知道的好消息”未必还能带来超额收益？",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/market-efficiency.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1808,7 +1808,7 @@
       "example": "一个家庭可通过应急金、保险、资产分散和债务控制来管理财务风险。",
       "boundary": "过度保守也有成本。风险管理要平衡安全、收益、流动性和机会成本。",
       "reflection": "为自己设计一个三层风险防线：应急金、保险、投资分散。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/risk-management.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1888,7 +1888,7 @@
       "example": "重大疾病或意外风险可能给家庭现金流造成冲击，保险可以把极端损失转化为可预算的保费。",
       "boundary": "保险不是投资收益承诺。购买前要理解保障责任、除外责任、等待期和现金价值。",
       "reflection": "选择一种保险，写出它覆盖什么、不覆盖什么。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/insurance.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -1968,7 +1968,7 @@
       "example": "同样房价下，利率上升会提高月供，降低家庭可承受贷款规模。",
       "boundary": "房价不会只涨不跌。流动性、地区人口、政策、维护成本和家庭收入稳定性都很重要。",
       "reflection": "列出买房决策中除房价外的五个现金流项目。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/real-estate-finance.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -2048,7 +2048,7 @@
       "example": "留学生家庭持有人民币但未来要支付美元学费，就暴露在人民币兑美元汇率波动风险中。",
       "boundary": "汇率受宏观、政策、情绪和地缘因素影响，短期预测很难。不要把高利率货币简单理解成更安全。",
       "reflection": "找一个汇率变化影响生活成本的例子。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/international-finance.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -2128,7 +2128,7 @@
       "example": "移动支付让小额交易更方便，也让商户流水成为信用评估的一部分。",
       "boundary": "技术不能消除金融风险。算法偏差、数据泄露、过度借贷和监管套利都需要警惕。",
       "reflection": "选择一个常用金融科技产品，分析它提高了什么效率，也带来了什么风险。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/fintech.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -2208,7 +2208,7 @@
       "example": "理财销售需要向客户说明风险等级和适当性，不能只强调历史收益。",
       "boundary": "监管不能替代个人判断，也可能滞后于创新。合规是底线，伦理要求往往更高。",
       "reflection": "为什么“没有违法”不一定等于“做得负责任”？",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/regulation-ethics.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -2289,7 +2289,7 @@
       "example": "一个刚工作的人可以先建立 3-6 个月应急金，控制消费贷，再逐步配置长期投资。",
       "boundary": "规划不是一次性文件。收入、家庭、目标、市场和健康变化都会要求调整。",
       "reflection": "写一份一页纸个人财务计划：目标、约束、现金流、防线、投资原则。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/personal-plan.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -2370,7 +2370,7 @@
       "example": "分析“是否投资一家咖啡店”：估算客流、客单价、成本、初始投入、租约风险、竞争反应和退出方案。",
       "boundary": "再完整的报告也不是确定性预言。好报告的价值在于让不确定性被看见、被比较、被管理。",
       "reflection": "选择一个真实项目，写 800 字以内的金融分析报告摘要。",
-      "defaultVisual": "",
+      "defaultVisual": "assets/lesson_visuals/mastery-capstone.jpg",
       "challenges": [
         {
           "difficulty": "easy",

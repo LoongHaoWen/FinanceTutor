@@ -37,12 +37,14 @@ def test_curriculum_has_30_lessons_with_challenge_ladder():
         assert "标准答案示例：先用一句话说明" not in case_study["answer"]
 
 
-def test_first_ten_lesson_visuals_are_bundled_assets():
+def test_all_lesson_visuals_are_bundled_assets():
     data = json.loads(CURRICULUM.read_text(encoding="utf-8"))
-    first_ten_lessons = data["lessons"][:10]
-    assert len(first_ten_lessons) == 10
-    for lesson in first_ten_lessons:
-        assert lesson["defaultVisual"].startswith("assets/lesson_visuals/")
+    lessons = data["lessons"]
+    assert len(lessons) == 30
+    for lesson in lessons:
+        visual = lesson["defaultVisual"]
+        assert visual.startswith("assets/lesson_visuals/")
+        assert (ROOT / "static" / visual).is_file()
 
 
 def test_teacher_output_is_cleaned_for_readability():
