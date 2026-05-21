@@ -55,11 +55,24 @@ def test_lesson_panel_only_shows_challenge_tab_by_default():
     html = INDEX.read_text(encoding="utf-8")
     app_js = APP_JS.read_text(encoding="utf-8")
 
-    assert html.count('class="tab ') == 1
-    assert 'data-tab="exercise"' in html
+    hero_actions = html.split('class="hero-actions"', 1)[1].split("</div>", 1)[0]
+    assert hero_actions.index('id="challengeEntryBtn"') < hero_actions.index('id="markDoneBtn"')
+    assert "挑战题" in hero_actions
+    assert 'class="tabs"' not in html
+    assert 'data-tab="exercise"' in hero_actions
     assert "挑战题" in html
     for removed_tab in ["定义卷轴", "关系地图", "模型工坊", "案例补给", "边界陷阱"]:
         assert removed_tab not in html
 
     assert 'activeTab: "exercise"' in app_js
     assert 'state.activeTab = "definition"' not in app_js
+
+
+def test_mark_done_is_locked_until_all_challenges_are_correct():
+    app_js = APP_JS.read_text(encoding="utf-8")
+
+    assert "function areAllChallengesCorrect" in app_js
+    assert "challenges.every" in app_js
+    assert 'markDoneBtn").disabled = !canComplete' in app_js
+    assert 'markDoneBtn").classList.toggle("locked", !canComplete)' in app_js
+    assert "if (!areAllChallengesCorrect(lesson))" in app_js

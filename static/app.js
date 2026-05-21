@@ -155,6 +155,11 @@ function getChallengeRecord(lesson, difficulty = state.activeDifficulty) {
   return record[difficulty] || null;
 }
 
+function areAllChallengesCorrect(lesson) {
+  const challenges = getChallenges(lesson);
+  return challenges.length > 0 && challenges.every((challenge) => getChallengeRecord(lesson, challenge.difficulty)?.correct);
+}
+
 function challengeKey(lesson, challenge) {
   return `${lesson.id}:${challenge.difficulty}`;
 }
@@ -313,14 +318,21 @@ function renderLesson() {
   $("lessonStatus").textContent = isDone(lesson.id) ? "已通关" : "挑战中";
   $("lessonStatus").className = `status ${isDone(lesson.id) ? "done" : ""}`;
   $("noteBox").value = state.progress.notes[lesson.id] || "";
+  updateCompletionGate();
   renderCompanionTip();
   renderConceptVisual();
   renderGeneratedVisual();
 
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.toggle("active", tab.dataset.tab === state.activeTab);
-  });
   renderTab();
+}
+
+function updateCompletionGate() {
+  const lesson = currentLesson();
+  const canComplete = areAllChallengesCorrect(lesson) && !isDone(lesson.id);
+  $("markDoneBtn").disabled = !canComplete;
+  $("markDoneBtn").classList.toggle("locked", !canComplete);
+  $("markDoneBtn").textContent = isDone(lesson.id) ? "已通关" : "通关本关";
+  $("markDoneBtn").title = canComplete ? "挑战已完成，可以通关" : "答对本关全部挑战题后才能通关";
 }
 
 function renderConceptVisual() {
@@ -524,6 +536,7 @@ function bindQuiz() {
       renderTab();
       renderCompanionTip();
       renderProgress();
+      updateCompletionGate();
     });
   });
 
@@ -603,8 +616,18 @@ document.addEventListener("click", async (event) => {
     renderLesson();
   }
 
+  if (clickedButton?.id === "challengeEntryBtn") {
+    state.activeTab = "exercise";
+    renderLesson();
+    $("tabContent").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   if (clickedButton?.id === "markDoneBtn") {
     const lesson = currentLesson();
+    if (!areAllChallengesCorrect(lesson)) {
+      $("teacherAnswer").textContent = "先答对本关全部挑战题，再来通关本关。";
+      return;
+    }
     if (!isDone(lesson.id)) {
       state.progress.completed.push(lesson.id);
       await saveProgress();
