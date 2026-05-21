@@ -67,20 +67,31 @@ const visualPalettes = [
   ["#334155", "#2563eb", "#10b981"],
 ];
 
+const CURRICULUM_URL = "../data/finance_curriculum.json";
+const PROGRESS_STORAGE_KEY = "financeTutor.progress.v1";
+
 const $ = (id) => document.getElementById(id);
 
 async function load() {
-  const [curriculum, progress] = await Promise.all([
-    fetch("/api/curriculum").then((r) => r.json()),
-    fetch("/api/progress").then((r) => r.json()),
-  ]);
+  const curriculum = await fetch(CURRICULUM_URL).then((r) => {
+    if (!r.ok) throw new Error("课程数据加载失败");
+    return r.json();
+  });
   state.data = curriculum;
-  state.progress = normalizeProgress(progress);
+  state.progress = normalizeProgress(loadStoredProgress());
   renderShell();
   renderLesson();
   calculateFV();
   checkTeacherStatus();
   checkVisualStatus();
+}
+
+function loadStoredProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
 }
 
 function normalizeProgress(progress) {
@@ -231,11 +242,7 @@ function progressSummary() {
 }
 
 async function saveProgress() {
-  await fetch("/api/progress", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(state.progress),
-  });
+  localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(state.progress));
 }
 
 function renderShell() {
@@ -368,10 +375,10 @@ function renderConceptVisual() {
 
 function renderGeneratedVisual() {
   const lesson = currentLesson();
-  const imageUrl = state.progress.visuals?.[lesson.id] || lesson.defaultVisual;
+  const imageUrl = lesson.defaultVisual;
   $("generatedVisual").innerHTML = imageUrl
-    ? `<img src="${imageUrl}" alt="${shortTitle(lesson)}关卡插画" /><p>${state.progress.visuals?.[lesson.id] ? "小精灵已为本关生成解释插画。再次点击可生成新的版本。" : "已整合你之前生成的相关插画，作为本关的视觉线索。"}</p>`
-    : `<p>想把这一关变成一张图？点击“生成本关插画”，小精灵会调用 nano banana 生成解释图片。</p>`;
+    ? `<img src="${imageUrl}" alt="${shortTitle(lesson)}关卡插画" /><p>已整合随站点发布的关卡插画，作为本关的视觉线索。</p>`
+    : `<p>公开静态版暂未内置这一关的插画，可以先使用上方知识图谱理解核心关系。</p>`;
 }
 
 function renderCompanionTip() {
@@ -553,136 +560,37 @@ function calculateFV() {
 }
 
 async function checkTeacherStatus() {
-  try {
-    const status = await fetch("/api/teacher/status").then((r) => r.json());
-    state.teacherReady = status.configured;
-    $("teacherStatus").textContent = status.configured ? `已连接：${status.model}` : "未配置";
-    $("teacherStatus").className = `pill ${status.configured ? "ready" : ""}`;
-    $("modelInput").value = status.model || "deepseek-v4-flash";
-  } catch {
-    $("teacherStatus").textContent = "检测失败";
-  }
+  state.teacherReady = false;
+  $("teacherStatus").textContent = "静态版";
+  $("teacherStatus").className = "pill ready";
 }
 
 async function checkVisualStatus() {
-  try {
-    const status = await fetch("/api/visual/status").then((r) => r.json());
-    state.visualReady = status.configured;
-    $("visualStatus").textContent = status.configured ? `已连接：${status.model}` : "未配置";
-    $("visualStatus").className = `pill ${status.configured ? "ready" : ""}`;
-    $("visualModelInput").value = status.model || "Nano_Banana_Pro_2K_0";
-    $("visualAspectInput").value = status.aspectRatio || "16:9";
-  } catch {
-    $("visualStatus").textContent = "检测失败";
-  }
-}
-
-async function saveVisualSettings() {
-  const apiKey = $("visualApiKeyInput").value.trim();
-  const model = $("visualModelInput").value.trim();
-  const aspectRatio = $("visualAspectInput").value.trim();
-  $("generatedVisual").innerHTML = "<p>正在保存图解配置...</p>";
-  try {
-    const response = await fetch("/api/visual/settings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ apiKey, model, aspectRatio }),
-    });
-    const payload = await response.json();
-    if (!response.ok || payload.error) {
-      throw new Error(payload.error || "保存失败");
-    }
-    $("visualApiKeyInput").value = "";
-    $("generatedVisual").innerHTML = payload.configured
-      ? `<p>图解引擎已点亮。当前模型：${payload.model}</p>`
-      : "<p>还没有填写 nano banana API key。</p>";
-    checkVisualStatus();
-  } catch (error) {
-    $("generatedVisual").innerHTML = `<p>保存失败：${error.message}</p>`;
-  }
+  state.visualReady = false;
+  $("visualStatus").textContent = "内置插画";
+  $("visualStatus").className = "pill ready";
 }
 
 async function generateVisual() {
-  const lesson = currentLesson();
-  const monster = stageMonsters[state.activeLesson] || "金融概念守关难题";
-  $("generateVisualBtn").disabled = true;
-  $("generatedVisual").innerHTML = "<p>小精灵正在绘制本关图解，这可能需要几十秒。先喝口水，别急。</p>";
-  try {
-    const response = await fetch("/api/visual/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lessonId: lesson.id, monster }),
-    });
-    const payload = await response.json();
-    if (!response.ok || payload.error) {
-      throw new Error(payload.error || "生成失败");
-    }
-    state.progress.visuals = state.progress.visuals || {};
-    state.progress.visuals[lesson.id] = payload.imageUrl;
-    await saveProgress();
-    renderGeneratedVisual();
-  } catch (error) {
-    $("generatedVisual").innerHTML = `<p>生成失败：${error.message}</p>`;
-  } finally {
-    $("generateVisualBtn").disabled = false;
-    checkVisualStatus();
-  }
-}
-
-async function saveTeacherSettings() {
-  const apiKey = $("apiKeyInput").value.trim();
-  const model = $("modelInput").value.trim();
-  $("teacherAnswer").textContent = "正在保存配置...";
-  try {
-    const response = await fetch("/api/teacher/settings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ apiKey, model }),
-    });
-    const payload = await response.json();
-    if (!response.ok || payload.error) {
-      throw new Error(payload.error || "保存失败");
-    }
-    $("apiKeyInput").value = "";
-    $("teacherAnswer").textContent = payload.configured
-      ? `配置已保存。当前模型：${payload.model}`
-      : "还没有填写 API key。";
-    checkTeacherStatus();
-  } catch (error) {
-    $("teacherAnswer").textContent = `保存失败：${error.message}`;
-  }
+  $("generatedVisual").innerHTML =
+    "<p>公开 GitHub Pages 版本没有后端服务，不能在线生成新插画。你仍然可以使用已内置的前 10 关插画和上方知识图谱学习。</p>";
 }
 
 async function askTeacher(mode) {
   const lesson = currentLesson();
   const question = $("teacherQuestion").value.trim();
-  $("teacherAnswer").textContent =
-    mode === "quiz" ? "小精灵正在生成挑战..." : mode === "coach" ? "小精灵正在观察你的通关节奏..." : "小精灵正在思考...";
-  $("askTeacherBtn").disabled = true;
-  $("makeQuizBtn").disabled = true;
-  $("coachTeacherBtn").disabled = true;
-  try {
-    const response = await fetch("/api/teacher", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode, question, lessonId: lesson.id, progressSummary: progressSummary() }),
-    });
-    const payload = await response.json();
-    if (!response.ok || payload.error) {
-      throw new Error(payload.error || "请求失败");
-    }
-    const answer = cleanTeacherText(payload.answer);
-    $("teacherAnswer").textContent = answer || "小精灵这次没有带回清晰内容，请稍后再试。";
-    if (mode === "coach") {
-      $("companionTip").textContent = answer || $("companionTip").textContent;
-    }
-  } catch (error) {
-    $("teacherAnswer").textContent = `调用失败：${error.message}`;
-  } finally {
-    $("askTeacherBtn").disabled = false;
-    $("makeQuizBtn").disabled = false;
-    $("coachTeacherBtn").disabled = false;
-    checkTeacherStatus();
+  if (mode === "quiz") {
+    state.activeTab = "exercise";
+    renderLesson();
+    $("teacherAnswer").textContent = "公开静态版不能临时生成新题，已为你切到本关内置挑战题。四档难度都可以直接练。";
+    return;
+  }
+  const baseTip = tabAdvice[state.activeTab] || "先把这一关的定义、模型、例子和边界串起来，再做挑战题。";
+  const questionHint = question ? `你刚才问的是“${question}”。` : "";
+  const answer = `${questionHint}公开静态版没有在线 AI 答疑，但这一关的学习目标是：${lesson.objective}。建议先用自己的话复述定义，再对照案例和边界检查理解。${baseTip}`;
+  $("teacherAnswer").textContent = answer;
+  if (mode === "coach") {
+    $("companionTip").textContent = answer;
   }
 }
 
@@ -743,14 +651,6 @@ document.addEventListener("click", async (event) => {
 
   if (clickedButton?.id === "coachTeacherBtn") {
     askTeacher("coach");
-  }
-
-  if (clickedButton?.id === "saveApiKeyBtn") {
-    saveTeacherSettings();
-  }
-
-  if (clickedButton?.id === "saveVisualKeyBtn") {
-    saveVisualSettings();
   }
 
   if (clickedButton?.id === "generateVisualBtn") {

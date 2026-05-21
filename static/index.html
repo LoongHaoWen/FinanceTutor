@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>金融勇者学院</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <aside class="sidebar">
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="hero-scene hero-image-card" aria-hidden="true">
-          <img src="/assets/hero_finance_adventure.jpg" alt="" />
+          <img src="assets/hero_finance_adventure.jpg" alt="" />
           <div class="hero-image-label">
             <strong>入门村地图</strong>
             <span>从概念迷雾走向判断力</span>
@@ -83,11 +83,11 @@
           <section class="fairy-hub" aria-label="小精灵灵光随行面板">
             <div class="fairy-hub-head">
               <div class="fairy-profile compact">
-                <img src="/assets/fairy_lingguang.jpg" alt="小精灵灵光" />
+                <img src="assets/fairy_lingguang.jpg" alt="小精灵灵光" />
                 <div>
                   <p class="eyebrow">小精灵伙伴</p>
                   <h4>灵光随行中</h4>
-                  <p>她会把关卡提示、学习方法和实时答疑放在一起，陪你稳稳通关。</p>
+                  <p>她会把关卡提示、学习方法和本地练习建议放在一起，陪你稳稳通关。</p>
                 </div>
               </div>
               <span id="teacherStatus" class="pill">检测中</span>
@@ -111,13 +111,7 @@
                   <button id="askTeacherBtn" class="primary">提问</button>
                   <button id="makeQuizBtn" class="secondary">生成挑战</button>
                 </div>
-                <div id="teacherAnswer" class="teacher-answer">小精灵会结合当前关卡回答你的问题，并提醒你怎么更轻松地通关。</div>
-                <details class="teacher-config">
-                  <summary>DeepSeek 配置</summary>
-                  <label>DeepSeek API key <input id="apiKeyInput" type="password" placeholder="粘贴 key 后保存到本地" /></label>
-                  <label>模型 <input id="modelInput" type="text" value="deepseek-v4-flash" /></label>
-                  <button id="saveApiKeyBtn" class="ghost">保存配置</button>
-                </details>
+                <div id="teacherAnswer" class="teacher-answer">公开静态版会结合当前关卡给出本地学习建议；在线 AI 答疑需要后端服务，已在公开版中关闭。</div>
               </div>
             </div>
           </section>
@@ -146,14 +140,10 @@
         <aside class="tools">
           <section class="visual-config-panel">
             <div class="section-head">
-              <h3>图解生成</h3>
+              <h3>图解资源</h3>
               <span id="visualStatus" class="pill">检测中</span>
             </div>
-            <p class="tool-note">需要更直观的解释时，小精灵会调用 nano banana 生成本关插画。</p>
-            <label>nano banana API key <input id="visualApiKeyInput" type="password" placeholder="已配置时可留空" /></label>
-            <label>图片模型 <input id="visualModelInput" type="text" value="Nano_Banana_Pro_2K_0" /></label>
-            <label>比例 <input id="visualAspectInput" type="text" value="16:9" /></label>
-            <button id="saveVisualKeyBtn" class="ghost">保存图解配置</button>
+            <p class="tool-note">公开静态版使用随站点发布的插画和知识图谱，不收集或保存任何 API key。</p>
           </section>
 
           <section>
@@ -190,6 +180,6 @@
       </section>
     </main>
 
-    <script src="/app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

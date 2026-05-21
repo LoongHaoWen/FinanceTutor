@@ -47,7 +47,7 @@
       "example": "如果你今天有 10000 元，可以消费、存银行、买基金或投资学习。金融学会问：每个选择未来可能带来多少现金流？多久以后发生？不确定性有多大？你能承受吗？",
       "boundary": "金融不是保证赚钱的技巧。它提供的是比较选择、衡量风险、避免明显错误的方法。真实世界里，信息不完整、情绪波动和制度变化都会影响结果。",
       "reflection": "写下你最近做过的一个金钱决策，并用“现金流、时间、风险”三步描述它。",
-      "defaultVisual": "/assets/lesson_visuals/finance-map.jpg",
+      "defaultVisual": "assets/lesson_visuals/finance-map.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -127,7 +127,7 @@
       "example": "如果你把 1000 元以年利率 5% 投资 3 年，终值约为 1000 × 1.05^3 = 1157.63 元。",
       "boundary": "公式假设利率稳定、收益可以再投资、没有税费和违约风险。现实中这些条件经常不完全成立。",
       "reflection": "用软件里的时间价值计算器，比较 3%、6%、9% 三种利率下 10 年后的结果。",
-      "defaultVisual": "/assets/lesson_visuals/time-value.jpg",
+      "defaultVisual": "assets/lesson_visuals/time-value.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -207,7 +207,7 @@
       "example": "银行存款收益较低但确定性较高；创业投资可能回报巨大，也可能血本无归。二者的差异主要来自风险水平不同。",
       "boundary": "高风险不自动等于高收益。只有承担了被市场补偿的风险，长期才可能获得更高期望收益。盲目冒险不是投资能力。",
       "reflection": "找一个你熟悉的投资产品，写下它的主要风险来源。",
-      "defaultVisual": "/assets/lesson_visuals/risk-return.jpg",
+      "defaultVisual": "assets/lesson_visuals/risk-return.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -287,7 +287,7 @@
       "example": "一家企业账面盈利 100 万，但客户还没付款，应收账款增加很多，现金流可能并不好。这就是为什么只看利润可能误判企业质量。",
       "boundary": "报表有会计准则和估计假设。不同公司、行业、国家之间直接比较时，要注意口径差异。",
       "reflection": "随便找一家上市公司的年报目录，定位三大报表的位置。",
-      "defaultVisual": "/assets/lesson_visuals/statements-cashflow.jpg",
+      "defaultVisual": "assets/lesson_visuals/statements-cashflow.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -367,7 +367,7 @@
       "example": "一家公司要扩建工厂，可以向银行贷款、发行债券，也可以发行新股。债务不会稀释股权，但增加还本付息压力；股票减轻固定偿付压力，但会稀释原股东权益。",
       "boundary": "股票不一定长期上涨，债券也不一定绝对安全。信用违约、利率上升、通胀和流动性不足都可能带来损失。",
       "reflection": "用一句话解释：为什么股票比普通存款更不确定？",
-      "defaultVisual": "/assets/lesson_visuals/stocks-bonds.jpg",
+      "defaultVisual": "assets/lesson_visuals/stocks-bonds.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -447,7 +447,7 @@
       "example": "你买货币基金，基金把许多人的小额资金汇集起来，投资短期低风险工具。你获得流动性和收益，资金需求方获得短期融资。",
       "boundary": "金融机构能降低信息成本和交易成本，但不能消灭风险。过度杠杆、期限错配和信任危机可能造成系统性问题。",
       "reflection": "列出你日常接触过的三个金融机构或金融产品。",
-      "defaultVisual": "/assets/lesson_visuals/markets-institutions.jpg",
+      "defaultVisual": "assets/lesson_visuals/markets-institutions.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -527,7 +527,7 @@
       "example": "如果你的所有投资都在同一家公司的股票上，公司出现负面事件会严重影响你。若组合覆盖多个行业、地区和资产类型，单一事件的影响通常较小。",
       "boundary": "分散化不是越多越好，也不是随便买很多资产就有效。高度相关的资产看似很多，实际可能仍暴露在同一种风险下。",
       "reflection": "假设你只能选 4 类资产组成组合，你会选什么？为什么？",
-      "defaultVisual": "/assets/lesson_visuals/portfolio.jpg",
+      "defaultVisual": "assets/lesson_visuals/portfolio.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -607,7 +607,7 @@
       "example": "某项目今天投入 100 万，未来三年每年带来 40 万现金流。如果折现后的现金流总和超过 100 万，项目可能值得进一步考虑。",
       "boundary": "NPV 对现金流预测和折现率很敏感。战略价值、竞争反应、管理执行和政策变化也会影响真实结果。",
       "reflection": "设计一个小生意项目，列出初始投入和未来三期可能现金流。",
-      "defaultVisual": "/assets/lesson_visuals/capital-budgeting.jpg",
+      "defaultVisual": "assets/lesson_visuals/capital-budgeting.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -687,7 +687,7 @@
       "example": "航空公司担心未来油价上涨，可以使用燃油相关衍生品锁定部分成本，减少油价波动对利润的冲击。",
       "boundary": "衍生品不是高级赚钱工具。合约条款、保证金、流动性、对手方风险和杠杆都会放大损失。",
       "reflection": "想一个生活中的“对冲”例子，不限于金融。",
-      "defaultVisual": "/assets/lesson_visuals/derivatives.jpg",
+      "defaultVisual": "assets/lesson_visuals/derivatives.jpg",
       "challenges": [
         {
           "difficulty": "easy",
@@ -768,7 +768,7 @@
       "example": "分析“是否应该用 3 万元参加一个职业培训”：先估计学费和机会成本，再估计未来收入提升，折现到今天，最后考虑不确定性和替代方案。",
       "boundary": "模型可以帮助思考，但不能替你做价值选择。风险承受能力、人生目标、信息质量和心理压力都需要纳入判断。",
       "reflection": "选择一个真实问题，写一份 300 字以内的小分析。",
-      "defaultVisual": "/assets/lesson_visuals/capstone.jpg",
+      "defaultVisual": "assets/lesson_visuals/capstone.jpg",
       "challenges": [
         {
           "difficulty": "easy",

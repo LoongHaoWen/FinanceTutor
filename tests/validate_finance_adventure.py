@@ -41,7 +41,7 @@ def test_first_ten_lesson_visuals_are_bundled_assets():
     first_ten_lessons = data["lessons"][:10]
     assert len(first_ten_lessons) == 10
     for lesson in first_ten_lessons:
-        assert lesson["defaultVisual"].startswith("/assets/lesson_visuals/")
+        assert lesson["defaultVisual"].startswith("assets/lesson_visuals/")
 
 
 def test_teacher_output_is_cleaned_for_readability():

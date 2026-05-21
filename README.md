@@ -1,8 +1,24 @@
 # 金融勇者学院
 
-这是一个用 Python 标准库实现的本地学习软件，面向完全没有金融学基础的学习者。软件采用打怪通关模式：每一课是一关，每个概念都是一个可以击破的守关难题。
+这是一个面向完全没有金融学基础学习者的金融学习软件。软件采用打怪通关模式：每一课是一关，每个概念都是一个可以击破的守关难题。
 
-## 运行方式
+## GitHub Pages 公开访问
+
+仓库根目录已经提供 `index.html`，可以直接用 GitHub Pages 发布为静态站点。
+
+发布方式：
+
+1. 推送到 GitHub。
+2. 打开仓库 Settings -> Pages。
+3. Source 选择 `Deploy from a branch`。
+4. Branch 选择 `main`，目录选择 `/root`。
+5. 保存后访问 GitHub 给出的 Pages 地址。
+
+公开静态版会从 `data/finance_curriculum.json` 读取课程内容，并把朋友各自的学习进度、答题记录和笔记保存在他们自己浏览器的 `localStorage` 中。静态版不会收集或保存 API key，也不会调用 DeepSeek 或 nano banana 后端接口。
+
+## 本地增强版运行方式
+
+如果你想继续使用 DeepSeek 答疑或 nano banana 图解生成，可以在本地运行 Python 版：
 
 ```powershell
 python app.py
