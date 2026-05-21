@@ -2,7 +2,7 @@ const state = {
   data: null,
   progress: { completed: [], quiz: {}, notes: {}, visuals: {}, cases: {} },
   activeLesson: 0,
-  activeTab: "definition",
+  activeTab: "exercise",
   activeDifficulty: "easy",
   cardIndex: 0,
   teacherReady: false,
@@ -279,7 +279,7 @@ function renderNav() {
   document.querySelectorAll(".lesson-link").forEach((btn) => {
     btn.addEventListener("click", () => {
       state.activeLesson = Number(btn.dataset.index);
-      state.activeTab = "definition";
+      state.activeTab = "exercise";
       state.activeDifficulty = "easy";
       renderNav();
       renderLesson();

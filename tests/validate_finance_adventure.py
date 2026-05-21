@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CURRICULUM = ROOT / "data" / "finance_curriculum.json"
 APP_JS = ROOT / "static" / "app.js"
+INDEX = ROOT / "static" / "index.html"
 
 
 def test_curriculum_has_30_lessons_with_challenge_ladder():
@@ -48,3 +49,17 @@ def test_teacher_output_is_cleaned_for_readability():
     app_js = APP_JS.read_text(encoding="utf-8")
     assert "function cleanTeacherText" in app_js
     assert "payload.answer ||" not in app_js
+
+
+def test_lesson_panel_only_shows_challenge_tab_by_default():
+    html = INDEX.read_text(encoding="utf-8")
+    app_js = APP_JS.read_text(encoding="utf-8")
+
+    assert html.count('class="tab ') == 1
+    assert 'data-tab="exercise"' in html
+    assert "挑战题" in html
+    for removed_tab in ["定义卷轴", "关系地图", "模型工坊", "案例补给", "边界陷阱"]:
+        assert removed_tab not in html
+
+    assert 'activeTab: "exercise"' in app_js
+    assert 'state.activeTab = "definition"' not in app_js
