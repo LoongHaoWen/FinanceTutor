@@ -29,9 +29,10 @@ def test_pages_paths_are_relative_to_repository_base():
         assert not visual.startswith("/")
 
 
-def test_root_index_forwards_github_pages_to_static_app():
+def test_root_index_embeds_static_app_for_github_pages_root_url():
     html = ROOT_INDEX.read_text(encoding="utf-8")
-    assert "static/index.html" in html
+    assert 'src="static/index.html"' in html
+    assert "http-equiv=\"refresh\"" not in html
 
 
 def test_public_static_build_does_not_collect_api_keys():
